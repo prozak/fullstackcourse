@@ -5,9 +5,9 @@ sequenceDiagram
     participant browser
     participant server
 
-    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note with form data
     activate server
-    server-->>browser: Redirect to /exampleapp/notes (302 FOUND)
+    server-->>browser: Redirect to /exampleapp/notes with the response code 302 FOUND
     deactivate server
 
     browser->>server: GET https://studies.cs.helsinki.fi/exampleapp/notes
@@ -60,3 +60,14 @@ sequenceDiagram
 ```
 
 0.6: New note in Single page app diagram
+
+```mermaid
+sequenceDiagram
+    participant browser
+    participant server
+
+    browser->>server: POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa with "{content: ...}"
+    activate server
+    server-->>browser: {"message":"note created"} with the response code 201 CREATED
+    deactivate server
+```
